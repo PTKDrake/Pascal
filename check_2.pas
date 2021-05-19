@@ -12,13 +12,16 @@ var
   n: Word;
   result: boolean;
 
-procedure isPrime(result: boolean; var n: Word);
+procedure isPrime(n: Word; var result: boolean);
 var
   a: Word;
 begin
-  if n > 3 then
     for a := 2 to ceil(sqrt(n)) {Làm tròn lên} do
-      if n mod a = 0 then result := false;
+      if n mod a = 0 then
+      begin
+        result := false;
+        exit;
+      end;
 end;
 
 begin
@@ -26,7 +29,7 @@ begin
   write('Nhập N: ');
   readln(n);
   result := true;
-  isPrime(result, n);
-  if result then writeln(n, ' là số nguyên tố')
+  isPrime(n, result);
+  if result then writeln(n, ' là số nguyên tố.')
   else writeln(n, ' không phải số nguyên tố.');
 end.
