@@ -6,17 +6,19 @@
  *)
 program check_2;
 
-uses windows {Thư viện dùng để in chữ có dấu}, math{Thư viện toán học};
+uses windows {Thư viện dùng để in chữ có dấu}, math {Thư viện toán học};
 
-var n: Word;
-result: boolean;
+var
+  n: Word;
+  result: boolean;
 
 procedure isPrime(result: boolean; var n: Word);
-var a: Word;
+var
+  a: Word;
 begin
   if n > 3 then
-  for a := 2 to ceil(sqrt(n)){Làm tròn lên} do
-    if n mod a = 0 then result := false;
+    for a := 2 to ceil(sqrt(n)) {Làm tròn lên} do
+      if n mod a = 0 then result := false;
 end;
 
 begin
