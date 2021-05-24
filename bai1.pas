@@ -21,6 +21,7 @@ begin
 end;
 
 begin
+  SetCon
   SetConsoleOutputCP(CP_UTF8);
   write('Nhập N: ');
   readln(N);
