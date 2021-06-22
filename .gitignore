@@ -1,2 +1,12 @@
-.vscode/templates/pascal.pas
 .vscode/templates/template.json
+.vscode/templates/file.pas
+.vscode/templates/nonfile.pas
+.vscode/tasks.json
+De2019_2020/out/BAI1/BAI1.exe
+De2019_2020/out/BAI1/BAI1.INP
+De2019_2020/out/BAI1/BAI1.o
+De2019_2020/out/BAI1/BAI1.OUT
+.vscode/launch.json
+GPATH
+GRTAGS
+GTAGS
