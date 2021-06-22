@@ -29,7 +29,7 @@ begin
         end;
         for j := i + 1 to length(st) do
         begin
-            //st3 := copy(st, i, j - i + 1);
+            st3 := copy(st, i, j - i + 1);
             if pos(' ' + st3 + ' ', st2) = 0 then
             begin
                 {writeln(st3, i:2, '-', j);
