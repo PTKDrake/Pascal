@@ -20,3 +20,7 @@ IDK/out/bastion/bastion.INP
 IDK/out/bastion/bastion.OUT
 IDK/out/kitu/kitu.exe
 IDK/out/kitu/kitu.o
+lib/out/quicksort/quicksort.exe
+lib/out/quicksort/quicksort.INP
+lib/out/quicksort/quicksort.o
+lib/out/quicksort/quicksort.OUT
