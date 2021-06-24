@@ -15,20 +15,42 @@ var
   ast: astr;
   i, j, max, count: word;
 
-procedure sort_str(var ast: astr);
-var i, j: word;
-    temp: string;
+// procedure sort_str(var ast: astr);
+// var i, j: word;
+//     temp: string;
+// begin
+//   for i := 0 to max - 1 do
+//     for j := i + 1 to max do
+//         begin
+//             if ast[i] > ast[j] then
+//             begin
+//               temp := ast[i];
+//               ast[i] := ast[j];
+//               ast[j] := temp;
+//             end;
+//         end;
+// end;
+
+procedure qsort(left, right: word; var ar: astr);
+var i, j, t, temp: word;
 begin
-  for i := 0 to max - 1 do
-    for j := i + 1 to max do
+    i := left;
+    j := right;
+    t := ar[(left + right) div 2];
+    repeat
+        while ar[i] < t do inc(i);
+        while ar[j] > t do dec(j);
+        if i <= j then
         begin
-            if ast[i] > ast[j] then
-            begin
-              temp := ast[i];
-              ast[i] := ast[j];
-              ast[j] := temp;
-            end;
+            temp := ar[i];
+            ar[i] := ar[j];
+            ar[j] := temp;
+            inc(i);
+            dec(j);
         end;
+    until i > j;
+    if left < j then qsort(left, j, ar);
+    if right > i then qsort(i, right, ar);
 end;
 
 begin
@@ -46,7 +68,7 @@ begin
             inc(max);
         end;
     end;
-    sort_str(ast);
+    sort_str(1, length(ast), ast);
     count := 0;
     for i := 0 to max - 1 do
         if ast[i] <> ast[i + 1] then
