@@ -7,11 +7,29 @@
 
 program bastion;
 
+type astr = array [0..1000] of string;
+
 var
   f1, f2: Text;
-  st, st2, st3: string;
-  i, j: byte;
-  count: integer;
+  st: string;
+  ast: astr;
+  i, j, max, count: word;
+
+procedure sort_str(var ast: astr);
+var i, j: word;
+    temp: string;
+begin
+  for i := 0 to max - 1 do
+    for j := i + 1 to max do
+        begin
+            if ast[i] > ast[j] then
+            begin
+              temp := ast[i];
+              ast[i] := ast[j];
+              ast[j] := temp;
+            end;
+        end;
+end;
 
 begin
     assign(f1, 'bastion.INP');
@@ -19,25 +37,23 @@ begin
     reset(f1);
     rewrite(f2);
     readln(f1, st);
-    st2 := ' ';
-    count := 0;
+    max := 0;
     for i := 1 to length(st) - 1 do
     begin
-        if pos(' ' + st3 + ' ', st2) = 0 then
+        for j := i to length(st) do
         begin
-            inc(count);
-        end;
-        for j := i + 1 to length(st) do
-        begin
-            st3 := copy(st, i, j - i + 1);
-            if pos(' ' + st3 + ' ', st2) = 0 then
-            begin
-                {writeln(st3, i:2, '-', j);
-                st2 := st2 + st3 + ' ';}
-                inc(count);
-            end;
+            ast[max] := copy(st, i, j - i + 1);
+            inc(max);
         end;
     end;
+    sort_str(ast);
+    count := 0;
+    for i := 0 to max - 1 do
+        if ast[i] <> ast[i + 1] then
+        begin
+          writeln(ast[i]);
+          inc(count);
+        end;
     writeln(count);
     writeln(f2, count);
     close(f1);
