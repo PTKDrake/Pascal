@@ -32,7 +32,8 @@ var
 // end;
 
 procedure qsort(left, right: word; var ar: astr);
-var i, j, t, temp: word;
+var i, j: word;
+temp, t: string;
 begin
     i := left;
     j := right;
@@ -68,15 +69,13 @@ begin
             inc(max);
         end;
     end;
-    sort_str(1, length(ast), ast);
+    qsort(1, length(ast), ast);
     count := 0;
     for i := 0 to max - 1 do
         if ast[i] <> ast[i + 1] then
         begin
-          writeln(ast[i]);
           inc(count);
         end;
-    writeln(count);
     writeln(f2, count);
     close(f1);
     close(f2);

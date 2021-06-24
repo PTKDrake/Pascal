@@ -14,13 +14,17 @@ var
   i, max: word;
   a1, a2: ai;
 
-function getmin(a: ai): integer;
-var t: word;
-g: integer;
+function getmin(a, a2: ai): integer;
+var j, t, g, temp: word;
 begin
-    g := a[0];
-    for t := 1 to max do
-    if g > a[t] then g := a[t];
+    g := abs(a[0] + a2[0]);
+    for j := 0 to max - 1 do
+        for t := j + 1 to max do
+        begin
+            temp := abs(a[i] + a[j]);
+            if temp = 0 then exit(0);
+            if g > temp then g := temp;
+        end;
     exit(g);
 end;
 
@@ -38,8 +42,7 @@ begin
         begin
           read(f1, a2[i]);
         end;
-    writeln(f2, getmin(a1) + getmin(a2));
-    writeln(f2, abs(getmin(a1) + getmin(a2)));
+    writeln(f2, getmin(a1, a2));
     close(f1);
     close(f2);
 end.
