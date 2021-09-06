@@ -9,7 +9,7 @@ program bai2;
 
 var
   f1, f2: Text;
-  arr: array of Word;
+  arr: array[1..100000] Word;
   count, i, j: Word;
 
 begin
@@ -19,15 +19,15 @@ begin
     rewrite(f2);
     readln(f1, count);
     SetLength(arr, count);
-    for i := 1 to count do arr[i] := 0;
+    for i := 1 to 100000 do arr[i] := 0;
     for i := 1 to count do
     begin
       readln(f1, j);
       inc(arr[j]);
     end;
     j := 0;
-    for i := 1 to count do if arr[i] > j then j := arr[i];
-    for i := 1 to count do
+    for i := 1 to 100000 do if arr[i] > j then j := arr[i];
+    for i := 1 to 100000 do
     if arr[i] = j then writeln(f2, i);
     close(f1);
     close(f2);
