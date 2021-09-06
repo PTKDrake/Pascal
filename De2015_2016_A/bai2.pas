@@ -9,8 +9,8 @@ program bai2;
 
 var
   f1, f2: Text;
-  arr: array[1..100000] Word;
-  count, i, j: Word;
+  arr: array[1..100000] of Longword;
+  count, i, j: Longword;
 
 begin
     assign(f1, 'bai2.INP');
@@ -18,8 +18,7 @@ begin
     reset(f1);
     rewrite(f2);
     readln(f1, count);
-    SetLength(arr, count);
-    for i := 1 to 100000 do arr[i] := 0;
+    FillChar(arr, 100000, 0);
     for i := 1 to count do
     begin
       readln(f1, j);
