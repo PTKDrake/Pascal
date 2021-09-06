@@ -2,7 +2,7 @@
  * Project: 2015_2016
  * Author: PTKDrake
  * Date: 13/7/2021
- * Info: https://ad.memcvn.net
+ * Info: https://ad.mcmevn.com
  *)
 
 program sapxau;

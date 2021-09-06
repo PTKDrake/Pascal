@@ -1,18 +1,18 @@
 (*
- * Project: 2015_2016
+ * Project: Them
  * Author: PTKDrake
- * Date: 13/7/2021
+ * Date: 6/9/2021
  * Info: https://ad.mcmevn.com
  *)
 
-program datve;
+program solon;
 
 var
   f1, f2: Text;
 
 begin
-    assign(f1, 'datve.INP');
-    assign(f2, 'datve.OUT');
+    assign(f1, 'solon.INP');
+    assign(f2, 'solon.OUT');
     reset(f1);
     rewrite(f2);
 

@@ -2,7 +2,7 @@
  * Project: De2015_2016
  * Author: PTKDrake
  * Date: 30/5/2021
- * Info: https://ad.memcvn.net
+ * Info: https://ad.mcmevn.com
  *)
 
 program SAPXAU;

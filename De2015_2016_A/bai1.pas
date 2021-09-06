@@ -2,7 +2,7 @@
  * Project: De2015_2016_A
  * Author: PTKDrake
  * Date: 6/9/2021
- * Info: https://ad.memcvn.net
+ * Info: https://ad.mcmevn.com
  *)
 
 program bai1;

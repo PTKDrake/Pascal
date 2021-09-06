@@ -2,7 +2,7 @@
  * Project: IDK
  * Author: PTKDrake
  * Date: 24/6/2021
- * Info: https://ad.memcvn.net
+ * Info: https://ad.mcmevn.com
  *)
 
 program seqgame;

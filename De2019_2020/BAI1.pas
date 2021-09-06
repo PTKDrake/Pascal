@@ -2,7 +2,7 @@
  * Project: De2019_2020
  * Author: PTKDrake
  * Date: 24/5/2021
- * Info: https://ad.memcvn.net
+ * Info: https://ad.mcmevn.com
  *)
 
 program BAI1;
