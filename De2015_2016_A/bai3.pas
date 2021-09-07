@@ -26,20 +26,14 @@ begin
         str(arr[i], s);
         sum := arr[i];
         if sum < max then
+        for j := i + 1 to count do
         begin
-            for j := i + 1 to count do
-            begin
-                sum := sum + arr[j];
-                str(arr[j], s2);
-                s := s + ' ' + s2;
-                if sum <= max then 
-                begin
-                    if frac(sqrt(sum)) = 0 then writeln(f2, s);
-                end
-                else break;
-            end;
-        end
-        else if (sum = max) and (frac(sqrt(sum)) = 0) then writeln(f2, s);
+            sum := sum + arr[j];
+            str(arr[j], s2);
+            s := s + ' ' + s2;
+            if sum > max then break;
+            if frac(sqrt(sum)) = 0 then writeln(f2, s);
+        end;
     end;
     close(f1);
     close(f2);
