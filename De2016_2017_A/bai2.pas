@@ -7,6 +7,8 @@
 
 program bai2;
 
+Uses math;
+
 var
   f1, f2: Text;
   min, max, count: LongWord;
@@ -15,7 +17,7 @@ function isPrime(num: LongWord): Boolean;
 var a: LongWord;
 begin
     if num <= 3 then exit(False);
-    for a := 2 to round(sqrt(num)) do
+    for a := 2 to ceil(sqrt(num)) do
         if num mod a = 0 then exit(False);
     exit(True);
 end;
