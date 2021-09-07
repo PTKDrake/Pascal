@@ -9,7 +9,7 @@ program bai1;
 
 var
   f1, f2: Text;
-  s: string;
+  s: AnsiString;
   i, count: Word;
 
 begin
@@ -17,7 +17,6 @@ begin
     assign(f2, 'bai1.OUT');
     reset(f1);
     rewrite(f2);
-    SetLength(s, 10000);
     readln(f1, s);
     s := upcase(s);
     count := 0;
