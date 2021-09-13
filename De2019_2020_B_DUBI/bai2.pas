@@ -12,8 +12,7 @@ type arr_t = array of LongWord;
 var
   f1, f2: Text;
   arr, arr2: arr_t;
-  n, a, b, i, j, a_c, b_c, s, e: LongWord;
-  exists: Boolean;
+  n, a, b, i, a_c, b_c, l, min: LongWord;
 
 procedure qsort(left, right: LongWord; var ar, ar2: arr_t);
 var i, j, t, temp: LongWord;
@@ -50,30 +49,22 @@ begin
     SetLength(arr2, n);
     for i := 1 to n do read(f1, arr[i], arr2[i]);
     qsort(1, n, arr, arr2);
-    exists := False;
-    for i := 1 to n - 1 do
+    l := 1;
+    min := 1000000001;
+    a_c := 0;
+    b_c := 0;
+    for i := 1 to n do
     begin
-        s := i;
-        e := i;
-        a_c := 0;
-        b_c := 0;
-        if arr2[i] = 1 then inc(a_c)
-        else inc(b_c);
-        for j := i + 1 to n do
+        if arr2[i] = 1 then inc(a_c) else inc(b_c);
+        while (a_c >= a) and (b_c >= b) do
         begin
-            if (a_c = a) and (b_c = b) then break;
-            if arr2[j] = 1 then inc(a_c)
-            else inc(b_c);
-            e := j;
-        end;
-        if (a_c = a) and (b_c = b) then
-        begin
-            exists := True;
-            writeln(f2, arr[e] - arr[s]);
-            break;
+            if arr[i] - arr[l] < min then min := arr[i] - arr[l];
+            if arr2[l] = 1 then dec(a_c) else dec(b_c);
+            inc(l);
         end;
     end;
-    if not exists then writeln(f2, -1);
+    if min = 1000000001 then writeln(f2, -1)
+    else writeln(f2, min);
     close(f1);
     close(f2);
 end.
