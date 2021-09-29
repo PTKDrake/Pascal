@@ -19,7 +19,6 @@ begin
     rewrite(f2);
     readln(f1, s);
     while s[1] = ' ' do delete(s, 1, 1);
-    s := s + ' ';
     s2 := '';
     i := 0;
     pre := 1;
@@ -28,8 +27,13 @@ begin
     repeat
         inc(i);
         while (s[i] = ' ') and (s[i + 1] = ' ') do delete(s, i, 1);
-        if (s[i] = ' ') and (i - pre > 0) then
+        if i - pre > 0 then
         begin
+            if s[i] <> ' ' then
+            begin
+                if i < Length(s) then Continue
+                else inc(i);
+            end;
             if longest < i - pre then
             begin
                 longest := i - pre;
@@ -43,7 +47,7 @@ begin
             end;
             pre := i + 1;
         end;
-    until i = length(s);
+    until i >= length(s);
     for i := 1 to count do writeln(f2, copy(s2, (i - 1) * longest + 1, longest));
     writeln(f2, longest);
     close(f1);
