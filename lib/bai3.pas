@@ -72,12 +72,8 @@ begin
            begin
                 x:=x+a[i];
                 k:=1;
-                if cmp(x,p[k])<0 then dec(k)
-                else
-                   begin
-                      while (cmp(x,p[k])>=0) do inc(k);
-                      dec(k);
-                   end;
+                while (cmp(x,p[k])>=0) do inc(k);
+                dec(k);
                 t:=t+chr(k+48);
                 x:=sub(x,p[k]);
            end;
