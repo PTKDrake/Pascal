@@ -58,6 +58,33 @@ begin
         exit(t);
 end;
 
+function divstrstr(a,b:ansistring):ansistring;
+var     p:array[0..9] of ansistring;
+        i,k:longint;
+        t,x:ansistring;
+
+begin
+        p[0]:='0';
+        for i:=1 to 9 do p[i]:=ad(p[i-1],b);
+        t:='';
+        x:='';
+        for i:=1 to length(a) do
+           begin
+                x:=x+a[i];
+                k:=1;
+                if cmp(x,p[k])<0 then dec(k)
+                else
+                   begin
+                      while (cmp(x,p[k])>=0) do inc(k);
+                      dec(k);
+                   end;
+                t:=t+chr(k+48);
+                x:=sub(x,p[k]);
+           end;
+        while (t[1]='0') and (length(t)>=2) do delete(t,1,1);
+        exit(t);
+end;
+
 function mul(s1:ansistring; x:longint): ansistring;
 var     i:longint;
         t:ansistring;
@@ -119,33 +146,6 @@ begin
                 inc(i);
            end;
         exit(du);
-end;
-
-function divstrstr(a,b:ansistring):ansistring;
-var     p:array[0..9] of ansistring;
-        i,k:longint;
-        t,x:ansistring;
-
-begin
-        p[0]:='0';
-        for i:=1 to 9 do p[i]:=ad(p[i-1],b);
-        t:='';
-        x:='';
-        for i:=1 to length(a) do
-           begin
-                x:=x+a[i];
-                k:=1;
-                if cmp(x,p[k])<0 then dec(k)
-                else
-                   begin
-                      while (cmp(x,p[k])>=0) do inc(k);
-                      dec(k);
-                   end;
-                t:=t+chr(k+48);
-                x:=sub(x,p[k]);
-           end;
-        while (t[1]='0') and (length(t)>=2) do delete(t,1,1);
-        exit(t);
 end;
 
 function np(s:ansistring):ansistring;
