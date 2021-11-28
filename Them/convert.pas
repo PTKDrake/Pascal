@@ -24,8 +24,8 @@ begin
     exit((c = '(') or (c = ')'));
 end;
 
-function getType(s: string): Byte;
-var i, l: byte;
+function getType(s: ansistring): dword;
+var i, l: dword;
 begin
     getType := 0;
     l := Length(s);
@@ -37,8 +37,18 @@ begin
     if l > 0 then getType := 2;
 end;
 
-function compressNB(s: string): string;
-var i,j,sp,ep: byte;
+function toString(n: DWord): AnsiString;
+begin
+    toString := '';
+    while n > 0 do 
+    begin
+        toString := chr(n mod 10 + ord('0')) + toString;
+        n := n div 10;
+    end;
+end;
+
+function compressNB(s: ansistring): ansistring;
+var i,j,sp,ep: dword;
 begin
     i := 1;
     compressNB := '';
@@ -57,19 +67,15 @@ begin
             inc(i);
         end else begin
             j := ep - sp + 1;
-            while j > 0 do 
-            begin
-                compressNB := compressNB + s[i] + chr(ord('0') + j mod 10);
-                j := j div 10;
-            end;
+            compressNB := compressNB + s[i] + toString(j);
             inc(i);
         end;
     end;
 end;
 
-function checkBrackets(s: string): Boolean;
-var c: Integer;
-i: byte;
+function checkBrackets(s: ansistring): Boolean;
+var c: LongInt;
+i: dword;
 begin
     c := 0;
     for i := 1 to Length(s) do
@@ -80,8 +86,8 @@ begin
     exit(c = 0);
 end;
 
-function search(s: string; sp,ep: byte): byte;
-var l: byte;
+function search(s: ansistring; sp,ep: dword): dword;
+var l: dword;
 begin
     search := 1;
     l := ep - sp + 1;
@@ -94,8 +100,8 @@ begin
     end;
 end;
 
-function compressB(s: string): string;
-var i,j,l: byte;
+function compressB(s: ansistring): ansistring;
+var i,j,l: dword;
 skip: Boolean;
 begin
     compressB := '';
@@ -109,13 +115,8 @@ begin
             l := search(s, i, j);
             if l > 1 then
             begin
-                compressB := compressB + '(' + copy(s, i, j - i + 1) + ')';
-                i := i + (j - i + 1) * l; 
-                while l > 1 do 
-                begin
-                    compressB := compressB + chr(l mod 10 + ord('0'));
-                    l := l div 10;
-                end;
+                compressB := compressB + '(' + copy(s, i, j - i + 1) + ')' + toString(l);
+                i := i + (j - i + 1) * l;
                 skip := False;
                 break;
             end;
@@ -129,8 +130,8 @@ begin
     end;
 end;
 
-function compress(s: string; nb: Boolean): string;
-var temp: string;
+function compress(s: ansistring; nb: Boolean): ansistring;
+var temp: ansistring;
 begin
     if nb then s := compressNB(s);
     temp := compressB(s);
@@ -138,16 +139,15 @@ begin
     exit(compress(temp, False));
 end;
 
-function extractNB(s: string): string;
-var i: byte;
-j,times: Word;
+function extractNB(s: ansistring): ansistring;
+var i,j,times: dWord;
 c: char;
 begin
     extractNB := '';
     i := 1;
     while i <= length(s) do
     begin
-        if isNumber(s[i+1]) and not isBracket(s[i]) then
+        if isNumber(s[i+1]) and not isBracket(s[i]) and not isNumber(s[i]) then
         begin
             c := s[i];
             times := 0;
@@ -166,10 +166,9 @@ begin
     end;
 end;
 
-function extractB(s: string): string;
-var i,skip,sp,ep: byte;
-j,times: Word;
-c: string;
+function extractB(s: ansistring): ansistring;
+var i,j,skip,sp,ep,times: dWord;
+c: ansistring;
 begin
     extractB := '';
     i := 1;
@@ -209,23 +208,25 @@ begin
     end;
 end;
 
-function extract(s: string): string;
+function extract(s: ansistring; nb: Boolean): ansistring;
+var temp: ansistring;
 begin
-    s := extractNB(s);
-    if s = extractB(s) then exit(s);
-    exit(extract(extractB(s)));
+    if nb then s := extractNB(s);
+    temp := extractB(s);
+    if s = temp then exit(s);
+    exit(extract(temp, False));
 end;
 
 procedure run();
-var s: string;
-t: byte;
+var s: ansistring;
+t: dword;
 begin
     readln(fi, s);
     t := getType(s);
     if t = 2 then 
     writeln(fo, s)
     else if t = 1 then
-    writeln(fo, extract(s))
+    writeln(fo, extract(s, True))
     else
     writeln(fo, compress(s, True));
 end;
