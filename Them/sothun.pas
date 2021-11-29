@@ -45,7 +45,7 @@ end;
 begin
     while True do
     begin
-        writeln('Nhap n(0 de thoat): ')
+        writeln('Nhap n(0 de thoat): ');
         readln(n);
         if n = 0 then break;
         if n > 9 then
