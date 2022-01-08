@@ -11,20 +11,6 @@ var
     f1, f2: Text;
     i,n,m: word;
     a: array[0..1000] of word;
-    s: string;
-
-function dec2bin(dec: Word; len: byte): string;
-var temp: Word;
-begin
-    dec2bin := '';
-    while dec > 0 do
-    begin
-        temp := dec mod 2;
-        dec2bin := chr(temp + ord('0')) + dec2bin;
-        dec := dec div 2;
-    end;
-    while length(dec2bin) < len do dec2bin := '0' + dec2bin;
-end;
 
 begin
     assign(f1, 'binseq.INP');
